@@ -1,0 +1,36 @@
+﻿@model PersonCrud.Models.PersonsViewModel
+
+<div>
+    <a href="/person/new" class="btn btn-primary">Add New Person</a>
+</div>
+<br/>
+
+<table class="table table-hover table-striped table-bordered">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var person in Model.Persons)
+    {
+        <tr>
+            <td>@person.FirstName</td>
+            <td>@person.LastName</td>
+            <td>@person.Age</td>
+            <td>
+                <a href="/person/show?id=@person.Id" class="btn btn-link">Show</a>
+                <a href="/person/edit?id=@person.Id" class="btn btn-primary">Edit</a>
+                <form method="POST" action="/person/delete" style="display: inline;">
+                    <input type="hidden" value="@person.Id" name="id"/>
+                    <input type="submit" value="Delete" class="btn btn-danger delete"/>    
+                </form>
+                
+            </td>
+        </tr>
+    }
+</table>
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/PersonScripts.js"></script>
+}

@@ -1,0 +1,5 @@
+﻿@model PersonCrud.Models.PersonViewModel
+@{ var person = @Model.Person; }
+<h2>@(person.FirstName + " " + @person.LastName)</h2>
+<h4>@person.Age</h4>
+<span><a href="/">Go home!</a></span>
