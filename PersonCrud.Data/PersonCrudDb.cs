@@ -50,6 +50,7 @@ namespace PersonCrud.Data
             person.FirstName = (string)reader["FirstName"];
             person.LastName = (string)reader["LastName"];
             person.Age = (int)reader["Age"];
+            person.Nickname = (string) reader["Nickname"];
             return person;
         }
 
@@ -111,10 +112,11 @@ namespace PersonCrud.Data
             using (var connection = new SqlConnection(_connectionString))
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "INSERT INTO Person (FirstName, LastName, Age) VALUES "
-                                      + "(@firstName, @lastName, @age); SELECT @@Identity";
+                command.CommandText = "INSERT INTO Person (FirstName, LastName, Age, Nickname) VALUES "
+                                      + "(@firstName, @lastName, @age, @nickname); SELECT @@Identity";
                 command.Parameters.AddWithValue("@firstName", person.FirstName);
                 command.Parameters.AddWithValue("@lastName", person.LastName);
+                command.Parameters.AddWithValue("@nickname", person.Nickname);
                 command.Parameters.AddWithValue("@age", person.Age);
                 connection.Open();
                 person.Id = (int)(decimal)command.ExecuteScalar();
@@ -127,10 +129,11 @@ namespace PersonCrud.Data
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "UPDATE Person SET FirstName = @firstName, LastName = @lastName, " +
-                    "Age = @age WHERE Id = @id";
+                    "Age = @age, Nickname = @nickname WHERE Id = @id";
                 command.Parameters.AddWithValue("@firstName", person.FirstName);
                 command.Parameters.AddWithValue("@lastName", person.LastName);
                 command.Parameters.AddWithValue("@age", person.Age);
+                command.Parameters.AddWithValue("@nickname", person.Nickname);
                 command.Parameters.AddWithValue("@id", person.Id);
                 connection.Open();
                 command.ExecuteNonQuery();
