@@ -10,6 +10,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Age</th>
+        <th>Nickname</th>
         <th>Actions</th>
     </tr>
     @foreach (var person in Model.Persons)
@@ -18,6 +19,7 @@
             <td>@person.FirstName</td>
             <td>@person.LastName</td>
             <td>@person.Age</td>
+            <td>@person.Nickname</td>
             <td>
                 <a href="/person/show?id=@person.Id" class="btn btn-link">Show</a>
                 <a href="/person/edit?id=@person.Id" class="btn btn-primary">Edit</a>
