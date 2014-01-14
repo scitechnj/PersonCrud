@@ -44,7 +44,7 @@ namespace PersonCrud.Data
 
         private Person GetFromReader(SqlDataReader reader)
         {
-           
+
             var person = new Person();
             person.Id = (int)reader["Id"];
             person.FirstName = (string)reader["FirstName"];
@@ -100,10 +100,10 @@ namespace PersonCrud.Data
                                      {"@id", id}
                                  },
                              reader =>
-                                 {
-                                     reader.Read();
-                                     return GetFromReader(reader);
-                                 });
+                             {
+                                 reader.Read();
+                                 return GetFromReader(reader);
+                             });
         }
 
         public void Add(Person person)

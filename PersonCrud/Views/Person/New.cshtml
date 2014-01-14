@@ -1,4 +1,9 @@
-﻿
+﻿@model PersonCrud.Models.PersonViewModel
+
+@{ ViewBag.PostAction = "Create";
+    ViewBag.PostController = "Person";
+   }
+
 
 <form action="/Person/Create" method="post">
     <fieldset>

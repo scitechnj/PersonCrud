@@ -1,0 +1,18 @@
+﻿@model PersonCrud.Entites.Person 
+
+<tr id="row-@Model.Id">
+    <td>@Model.FirstName</td>
+    <td>@Model.LastName</td>
+    <td>@Model.Age</td>
+    <td>
+        <a href="/person/show?id=@Model.Id" class="btn btn-link">Show</a>
+        <a href="/person/edit?id=@Model.Id" class="btn btn-primary">Edit</a>
+        @*<form method="POST" action="/person/delete" style="display: inline;">
+            <input type="hidden" value="@Model.Id" name="id"/>
+            <input type="submit" value="Delete" class="btn btn-danger delete"/>    
+        </form>
+        *@ 
+        @*<input type="hidden" value="@Model.Id" />*@
+        <button class="btn btn-danger delete" data-person-id="@Model.Id">Delete</button>       
+    </td>
+</tr>

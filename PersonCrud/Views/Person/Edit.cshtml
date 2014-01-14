@@ -1,13 +1,31 @@
 ﻿@model PersonCrud.Models.PersonViewModel
 
-<form action="/Person/Update" method="post">
+@{ ViewBag.PostAction = "Update";
+    ViewBag.PostController = "Person";
+   }
+
+@using (Html.BeginForm("update", "person"))
+{
+    <fieldset>
+        @*<legend>Update Person</legend>*@
+        @Html.TextBoxFor(p => p.Person.FirstName)<br/>
+        @Html.TextBoxFor(p => p.Person.LastName)<br/>
+        @Html.TextBoxFor(p => p.Person.Age)<br/>
+        @Html.HiddenFor(p => p.Person.Id)
+        <input type="submit" value="Update" class="btn btn-success" />
+        <input type="reset" value="Reset" class="btn btn-danger" />
+    </fieldset>
+}
+
+
+@*<form action="/Person/Update" method="post">
     <fieldset>
         <legend>Update Person</legend>
         <input type="text" value="@Model.Person.FirstName" name="Person.FirstName"/><br />
         <input type="text" name="Person.LastName" value="@Model.Person.LastName" /><br />
         <input type="text" name="Person.Age" value="@Model.Person.Age" /><br />
         <input type="hidden" name="Person.Id" value="@Model.Person.Id"/>
-        <input type="submit" value="Update" class="btn btn-success"/>
-        <input type="reset"  value="Reset" class="btn btn-danger"/>
+        <input type="submit" value="Update" class="btn btn-success" />
+        <input type="reset" value="Reset" class="btn btn-danger" />
     </fieldset>
-</form>
+</form>*@

@@ -1,0 +1,14 @@
+﻿@model PersonCrud.Entites.Person
+
+@using (Html.BeginForm(ViewBag.PostAction, ViewBag.PostController))
+{
+    <fieldset>
+        @*<legend>Update Person</legend>*@
+        @Html.TextBoxFor(p => p.FirstName)<br/>
+        @Html.TextBoxFor(p => p.LastName)<br/>
+        @Html.TextBoxFor(p => p.Age)<br/>
+        @Html.HiddenFor(p => p.Id)
+        <input type="submit" value="Update" class="btn btn-success" />
+        <input type="reset" value="Reset" class="btn btn-danger" />
+    </fieldset>
+}

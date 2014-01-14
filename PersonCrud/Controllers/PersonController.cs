@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace PersonCrud.Controllers
         {
             var allPeople = _personDb.Get();
             var viewModel = new PersonsViewModel { Persons = allPeople };
+            ViewBag.Title = "Index page baby!!";
+            //ViewData["Foobar"] = "Hello World!!";
             return View(viewModel);
         }
 
@@ -31,14 +34,15 @@ namespace PersonCrud.Controllers
 
         public ActionResult New()
         {
-            return View();
+            return View(new PersonViewModel { Person = new Person() });
         }
 
         [HttpPost]
         public ActionResult Create(Person person)
         {
             _personDb.Add(person);
-            return Redirect("/person/Show?id=" + person.Id);
+
+            return PartialView("PersonRow", person);
         }
 
         public ActionResult Edit(int id)
@@ -58,7 +62,7 @@ namespace PersonCrud.Controllers
         public ActionResult Delete(int id)
         {
             _personDb.Delete(id);
-            return RedirectToAction("Index");
+            return Json(new {status = true});
         }
 
     }
